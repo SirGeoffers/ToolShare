@@ -1,0 +1,65 @@
+{% extends "ToolShare/base/base_navbar.html" %}
+{% block content %}
+<center>
+<div style="margin-top:15px">
+<!--HEADER-->
+<div class="container" style="margin: 10px;"><div class="row"><h2>New People in our house!</h2></div>
+<!--Fields-->
+<form method='post' action=''>
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="username" class="col-md-2">
+            Username:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="">
+        </div>
+        <label for="password" class="col-md-2">
+            Password:
+        </label>
+        <div class="col-md-10">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+        <label for="first" class="col-md-2">
+            First Name:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="first" name="first" placeholder="John">
+        </div>
+        <label for="last" class="col-md-2">
+            Last Name:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="last" name="last" placeholder="Doe">
+        </div>
+        <label for="email" class="col-md-2">
+            Email:
+        </label>
+        <div class="col-md-10">
+            <input type="email" class="form-control" id="email" name="email" placeholder="john@doe.com">
+        </div>
+        <label for="address" class="col-md-2">
+            Address:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="address" name="address" placeholder="123 Cobblestone Lane">
+        </div>
+        <label for="phone" class="col-md-2">
+            Phone Number:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="(xxx)-xxx-xxxx">
+        </div>
+        <label for="zip" class="col-md-2">
+            Zip Code:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip Code">
+        </div>
+        <input type="submit" class="btn btn-info" value="Sign Up">
+    </div>
+</form>
+</div>
+</div>
+</center>
+{% endblock %}

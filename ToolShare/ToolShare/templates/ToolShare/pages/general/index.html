@@ -1,0 +1,44 @@
+{% extends "ToolShare/base/base_navbar.html" %}
+{% load staticfiles %}
+
+<!-- Template for the home page -->
+
+{% block title %} Tool Share {% endblock %}
+
+{% block content %}
+
+<!-- Main title -->
+<div class="col-md-2"></div>
+<div class="col-md-8"><center>
+
+<div class="row">
+  <div class="jumbotron">
+    <h1>Tool Share</h1>
+    <p>Courage is the magic that turns dreams into reality.</p>
+    <p><a class="btn btn-info btn-lg" role="button" href="/about">About us</a></p>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-4 col-md-offset-2">
+    <a href="/locations" class="thumbnail">
+      <img src="{% static "./images/index/globe.png" %}" alt="globe" />
+      <h3>Search by location</h3>
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="/locations" class="thumbnail">
+      <img src="{% static "./images/index/hammer.png" %}" alt="hammer" />
+      <h3>Search by tool</h3>
+    </a>
+  </div>
+
+
+</div>
+
+</center></div>
+<div class="col-md-2"></div>
+
+{% endblock %}

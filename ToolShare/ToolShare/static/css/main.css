@@ -1,0 +1,46 @@
+.component_tool {
+	background-color: rgba(179, 175, 151, .5);
+	padding-top:15px;
+	padding-bottom:15px;
+	margin-top:15px;
+	margin-bottom:15px;
+
+	outline:#999682 solid thin;
+}
+
+.component_shed {
+	background-color: rgba(179, 175, 151, .5);
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:40px;
+	margin-top:15px;
+	margin-bottom:15px;
+
+	outline:#807d6c solid thin;
+}
+
+.footer {
+	margin-top:20px;
+	text-align:center;
+	font-style:italic;
+	font-size:12px;
+}
+
+.u {
+	text-decoration:underline;
+}
+
+.button_link {color: white;}
+.button_link:hover {color: white;}
+
+
+
+a:hover {
+	text-decoration:none;
+}
+
+.navbar .divider-vertical {
+height: 50px;
+border-right: 1px solid #a13d24;
+border-left: 1px solid #a13d24;
+}

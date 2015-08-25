@@ -1,0 +1,29 @@
+{% load staticfiles %}
+
+<!-- Lists all of the tools that the currently logged in user has on reserve -->
+
+<!--<h3> None </h3>-->
+
+{% for tool in tools %}
+
+{% if false %}
+
+<div class="row"><div class="col-md-8 component_tool">
+
+	<div class="media">
+		<a class="pull-left" href="#">
+			<img class="media-object" src="{% static "./images/tools/hammer.jpg" %}" alt="hammer">
+		</a>
+		<div class="media-body">
+		<h4 class="media-heading"><a href="#" /> {{ tool.name }} </a></h4>
+		<h6>Days borrowed: 7</h6>
+		<h6>Due Date: 12/34/56</h6>
+		{{ tool.description }}
+		</div>
+	</div>
+
+</div></div>
+
+{% endif %}
+
+{% endfor %}

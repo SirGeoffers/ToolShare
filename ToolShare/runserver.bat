@@ -1,0 +1,2 @@
+SET PYTHONDONTWRITEBYTECODE=TRUE
+manage.py runserver

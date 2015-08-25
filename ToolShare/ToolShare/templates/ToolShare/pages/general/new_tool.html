@@ -1,0 +1,59 @@
+{% extends "ToolShare/base/base_navbar.html" %}
+
+{% block content %}
+
+<!-- Template for creating a new tool form -->
+
+<center>
+
+<div style="margin-top:15px">
+
+<!--HEADER-->
+<div class="container" style="margin: 10px;"><div class="row"><h2>Add Tool</h2></div>
+
+
+<!--Fields-->
+<form method='post' action=''>
+    {% csrf_token %}
+    <div class="form-group">
+
+        <label for="toolname" class="col-md-2">
+            Tool Name:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="toolname" name="toolname" placeholder="Tool Name" value="">
+        </div>
+
+        <label for="description" class="col-md-2">
+            Description:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="description" name="description" placeholder="description" value="">
+        </div>
+        <label for="condition" class="col-md-2">
+            Condition:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="condition" name="condition" placeholder="condition" value="">
+        </div>
+        <label for="location" class="col-md-2">
+            location:
+        </label>
+        <div class="col-md-10">
+            <select class="form-control" id="location" name="location">
+                {% for place in locations %}
+                <option>{{place.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="submit" class="btn btn-info" value="Add Tool">
+    </div>
+</form>
+        
+
+</div>
+</div>
+
+</center>
+
+{% endblock %}

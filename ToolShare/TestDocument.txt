@@ -1,0 +1,69 @@
+﻿Django Testing
+
+
+Use Case 01: Registration
+        Test 01: Account creation and login
+Input - <String> username, <String> password
+Expected Functionality - A test account is created, and successfully logs into the website. The new user profile is added to the database.
+
+Use Case 02: Adding a new tool
+        Test 02: Add a tool
+                Input - <String> name, <String> condition, <Boolean> availability, <String> 
+description
+Expected Functionality - A test tool is created, and is successfully added into
+the database.  This option should only be available to a registered user.
+
+Test 03: Cancel tool addition
+        Input - Cancel Button
+        Expected Functionality - The user is returned to their profile, and the tool is not
+        added into the database.
+Test 04: Remove tool
+        Input - Remove Button
+        Expected Functionality - The tool is successfully removed from the database.
+        This option should only be available to the registered user who owns the tool.
+
+
+Use Case 03: Change a tool’s location
+
+Test 05: Change the location of a tool
+        Input - 
+        Expected Functionality - The tool is successfully shifted from its current shed
+        or home to a new location, and is available for borrowing from this new location. 
+This option should only be available to the registered user who owns the tool.
+
+Test 06: Attempt to change the location of an unavailable tool.
+        Input -
+        Expected Functionality - An error is shown to the user, and the tool
+        is not shifted.
+
+Use Case 04: Change the availability of a tool
+        Test 07: Change to available
+                Input - Click the returned button
+                Expected Functionality - The tool is available again, and the availability for the
+                tool is set to True in the database. This should only be able to be done by the
+                owner of the shed, upon the actual return of the tool.
+        Test 08: Change to unavailable
+                Input - Approve the borrow request for the tool
+                Expected Functionality - The tool is unavailable for borrowing, and the
+availability for the tool is set to False in the database. This should only happen when the tool owner accepts a borrow request.
+
+
+Use Case 05: Request to borrow a tool
+        Test 09: Borrow a tool
+                Input - Click the borrow tool button
+                Expected Functionality - A request is sent to the owner of the tool, and appears
+                in their requests page. This option should only be available to a registered user.
+        Test 10: Attempt to borrow an unavailable tool
+                Input - Attempt to borrow an unavailable tool
+                Expected Functionality - An error is shown to the user, and a request does not
+                get sent to the tool owner.
+
+Use Case 06: Handle Borrow Requests
+        Test 11: Accept a borrow request
+                Input - Click the accept button
+                Expected Functionality - The tool is set to unavailable, and the borrower
+                receives the tool in their inventory.
+        Test 12: Deny a borrow request
+                Input - Click the deny button
+                Expected Functionality - Send a message to the attempted borrower, and
+                do not modify the tool’s availability or place the tool in their inventory.

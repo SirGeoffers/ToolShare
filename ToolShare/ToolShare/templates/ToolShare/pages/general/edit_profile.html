@@ -1,0 +1,63 @@
+{% extends "ToolShare/base/base_navbar.html" %}
+
+{% block content %}
+
+<!-- Template for the tool edit form -->
+
+<center>
+
+<div style="margin-top:15px">
+
+<!--HEADER-->
+<div class="container" style="margin: 10px;"><div class="row"><h2>Edit Profile</h2></div>
+
+{% if error %}<p class="alert alert-danger">{{ error }}</p>{% endif %}
+
+<!--Fields-->
+<form method='post' action=''>
+    {% csrf_token %}
+    <div class="form-group">
+
+        <label for="firstname" class="col-md-2">
+            First Name:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" value="{{ user.first_name }}">
+        </div>
+
+        <label for="description" class="col-md-2">
+            Last Name:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="lastname" value="{{ user.last_name }}">
+        </div>
+        <label for="address" class="col-md-2">
+            Address:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="address" name="address" placeholder="address" value="{{ profile.address }}">
+        </div>
+        <label for="email" class="col-md-2">
+            E-Mail:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{ user.email }}">
+        </div>
+		<label for="phone" class="col-md-2">
+            Phone Number:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="phone" value="{{ profile.phone }}">
+        </div>
+        <input type="submit" class="btn btn-success" value="Save Changes">
+        <a class="btn btn-info" href="{% url "profile" %}">Cancel</a>
+    </div>
+</form>
+        
+
+</div>
+</div>
+
+</center>
+
+{% endblock %}

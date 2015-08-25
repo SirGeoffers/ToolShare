@@ -1,0 +1,67 @@
+{% extends "ToolShare/base/base_navbar.html" %}
+
+{% block content %}
+
+<!-- Template for the tool edit form -->
+
+<center>
+
+<div style="margin-top:15px">
+
+<!--HEADER-->
+<div class="container" style="margin: 10px;"><div class="row"><h2>Edit Tool</h2></div>
+
+{% if error %}<p class="alert alert-danger">{{ error }}</p>{% endif %}
+
+<!--Fields-->
+<form method='post' action=''>
+    {% csrf_token %}
+    <div class="form-group">
+
+        <label for="toolname" class="col-md-2">
+            Tool Name:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="toolname" name="toolname" placeholder="Tool Name" value="{{ tool.name }}">
+        </div>
+
+        <label for="description" class="col-md-2">
+            Description:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="description" name="description" placeholder="description" value="{{ tool.description }}">
+        </div>
+        <label for="condition" class="col-md-2">
+            Condition:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="condition" name="condition" placeholder="condition" value="{{ tool.condition }}">
+        </div>
+        <label for="location" class="col-md-2">
+            Location:
+        </label>
+        <div class="col-md-10">
+            <select class="form-control" id="location" name="location">
+                {% for place in locations %}
+                <option {% if place == tool.location %} selected {% endif %}>{{place.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <label for="available" class="col-md-2">
+            Available:
+        </label>
+        <div class="col-md-10">
+            <input type="checkbox" id="available" name="available" {% if tool.available %} checked {% endif %}>
+        </div>
+        <input type="submit" class="btn btn-success" value="Save Changes">
+        <a class="btn btn-info" href="{% url "tool" toolid=tool.id %}">Cancel</a>
+    </div>
+</form>
+        
+
+</div>
+</div>
+
+</center>
+
+{% endblock %}

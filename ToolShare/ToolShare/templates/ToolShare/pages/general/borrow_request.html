@@ -1,0 +1,24 @@
+{% extends "ToolShare/base/base_navbar.html" %}
+{% load staticfiles %}
+
+<!-- Template for the tool borrow request form -->
+
+{% block title %} Tool Share - tool {% endblock %}
+
+{% block content %}
+
+<div class="col-md-8 col-md-offset-2">
+
+	<form method="post" action="{% url "borrow_request_submit" toolid=toolid %}">
+		{% csrf_token %}
+		<div class="form-group">
+            <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="Request Tool">
+        </div>
+	</form>
+
+</div>
+
+{% endblock %}

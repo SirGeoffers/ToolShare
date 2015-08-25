@@ -1,0 +1,22 @@
+{% extends "ToolShare/base/base_navbar.html" %}
+{% load staticfiles %}
+
+<!-- Template for the inventory page -->
+
+{% block title %} Tool Share - inventory {% endblock %}
+
+{% block active_inv %} active {% endblock %}
+
+{% block content %}
+
+<div class="col-md-8 col-md-offset-2">
+
+	<h1 class="u">Tools Borrowing</h1>
+	{% include "ToolShare/components/tool_list.html" %}
+
+	<h1 class="u">Tools On Reserve</h1>
+	{% include "ToolShare/components/reserve_list.html" %}
+
+</div>
+
+{% endblock %}

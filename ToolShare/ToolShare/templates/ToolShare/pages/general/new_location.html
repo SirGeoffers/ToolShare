@@ -1,0 +1,49 @@
+{% extends "ToolShare/base/base_navbar.html" %}
+
+{% block content %}
+
+<!-- Template for creating a location form -->
+
+<center>
+
+<div style="margin-top:15px">
+
+<!--HEADER-->
+<div class="container" style="margin: 10px;"><div class="row"><h2>Add Location</h2></div>
+
+
+<!--Fields-->
+<form method='post' action=''>
+    {% csrf_token %}
+    <div class="form-group">
+
+        <label for="locationname" class="col-md-2">
+            Location Name:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="toolname" name="locationname" placeholder="Location Name" value="">
+        </div>
+
+        <label for="address" class="col-md-2">
+            Address:
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="description" name="address" placeholder="address" value="">
+        </div>
+        <label for="available" class="col-md-2">
+            Community Shed:
+        </label>
+        <div class="col-md-10">
+            <input type="checkbox" id="shed" name="shed">
+        </div>
+        <input type="submit" class="btn btn-info" value="Add Location">
+    </div>
+</form>
+        
+
+</div>
+</div>
+
+</center>
+
+{% endblock %}

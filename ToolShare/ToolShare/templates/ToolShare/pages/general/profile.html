@@ -1,0 +1,155 @@
+{% extends "ToolShare/base/base_navbar.html" %}
+{% load staticfiles %}
+
+<!-- Template for the profile page -->
+
+{% block title %} Tool Share - profile {% endblock %}
+
+{% block active_pro %} active {% endblock %}
+
+{% block content %}
+
+<div class="col-md-8 col-md-offset-2">
+
+	<div class="row">
+
+		{% if error == "10" %}
+		<div class="alert alert-warning">You must own a shed to add a tool!</div>
+		{% endif %}
+
+		<div class="media">
+		  <div class="pull-left">
+		    <img class="media-object" src="{% static "./images/user/user_image.png" %}" alt="user image"
+		    height="300" width="300">
+		  </div>
+		  <div class="media-body">
+		    
+		  	<h1 class="u">{{ user.first_name }} {{ user.last_name }}</h1>
+		  	<h3>{{ user.profile.address }}</h3>
+		  	<h3>{{ user.email }}</h3>
+		  	<h3>{{ user.profile.phone }}</h3>
+			<a class="btn btn-warning" href="{% url "editprofile" %}" >Edit</a>
+			
+		  </div>
+		</div>
+
+	</div>
+
+	<div class="row" style="margin-top:15px">
+		<a class="btn btn-info" href="{% url "newtool" %}" >Add Tool</a>
+		<a class="btn btn-info" href="{% url "newlocation" %}" >Add Location</a>
+	</div>
+
+	<div class="row">
+
+		<h1><u>Tools Being Requested</u></h3>
+
+		{% for req in requests %}
+		{% if req.tool.location.owner.user == user %}
+
+			<div class="row"><div class="col-md-4 component_tool">
+
+				<b>{{req.owner.user.username}}</b> has requested to borrow <b>{{req.tool.name}}</b><br>
+				<u>Shed:</u> <b>{{ req.tool.location.name }}</b><br>
+				<u>Comments:</u> {{ req.description }}<br>
+				<button type="button" class="btn btn-success" value="1"><a href="tool_request/{{req.tool.id}}/{{req.owner.id}}/1/{{req.id}}" class="button_link" >Accept</a></button>
+				<button type="button" class="btn btn-danger" value="0"><a href="tool_request/{{req.tool.id}}/{{req.owner.id}}/0/{{req.id}}" class="button_link" >Decline</a></button>
+
+			</div></div>
+
+		{% endif %}
+		{% endfor %}
+
+	</div>
+
+	<div class="row">
+
+		<h1><u>Sheds Owned</u></h3>
+
+		{% for loc in locations %}
+
+		{% if loc.owner.user.username == user.username %}
+
+		<div class="row"><div class="col-md-8 component_shed">
+
+			<h2>{{ loc.name }}</h2>
+			<h3>{{ loc.address }}</h3>
+
+			<h2>Shed Inventory</h2>
+
+			{% for tool in tools %}
+			{% if tool.location == loc and tool.borrower == null %}
+
+			<div class="row"><div class="col-md-8 component_tool">
+
+				<div class="media">
+				  <a class="pull-left" href="tool/{{ tool.id }}">
+				    <img class="media-object" src="{% static "./images/tools/hammer.jpg" %}" alt="hammer">
+				  </a>
+				  <div class="media-body">
+				    <h4 class="media-heading"><a href="tool/{{ tool.id }}" /> {{ tool.name }} </a></h4>
+				    {% if tool.available %}
+				    <h5> Available </h5>
+
+				    {% else %}
+				    <h5>Due back:  {{ tool.enddate }} </h5>
+
+				    {% endif %}
+
+				    {{ tool.description }}
+				    <p>
+				    <b>condition:  </b>
+				    {{ tool.condition }}
+				    </p>
+				  </div>
+				</div>
+
+			</div></div>
+
+			{% endif %}
+			{% endfor %}
+
+			<h2>Tools being borrowed</h2>
+
+			{% for tool in tools %}
+			{% if tool.location == loc and tool.borrower != null %}
+
+			<div class="row"><div class="col-md-8 component_tool">
+
+				<div class="media">
+				  <a class="pull-left" href="tool/{{ tool.id }}">
+				    <img class="media-object" src="{% static "./images/tools/hammer.jpg" %}" alt="hammer">
+				  </a>
+				  <div class="media-body">
+				    <h4 class="media-heading"><a href="tool/{{ tool.id }}" /> {{ tool.name }} </a></h4>
+				    {% if tool.available %}
+				    <h5> Available </h5>
+
+				    {% else %}
+				    <h5>Due back:  {{ tool.enddate }} </h5>
+
+				    {% endif %}
+
+				    {{ tool.description }}
+				    <p>
+				    <b>condition:  </b>
+				    {{ tool.condition }}
+				    </p>
+				  </div>
+				</div>
+
+			</div></div>
+
+			{% endif %}
+			{% endfor %}
+
+		</div></div>
+
+		{% endif %}
+		{% endfor %}
+
+	</div>
+
+</div>
+
+{% endblock %}

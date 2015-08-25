@@ -1,0 +1,37 @@
+{% load staticfiles %}
+
+<!-- Lists all of the tools that the currently logged in user is borrowing -->
+
+{% for tool in tools %}
+
+{% if tool.borrower.user.username == user.username %}
+
+<div class="row"><div class="col-md-8 component_tool">
+
+	<div class="media">
+	  <a class="pull-left" href="tool/{{ tool.id }}">
+	    <img class="media-object" src="{% static "./images/tools/hammer.jpg" %}" alt="hammer">
+	  </a>
+	  <div class="media-body">
+	    <h4 class="media-heading"><a href="tool/{{ tool.id }}" /> {{ tool.name }} </a></h4>
+	    {% if tool.available %}
+	    <h5> Available </h5>
+
+	    {% else %}
+	    <h5>Due back:  {{ tool.enddate }} </h5>
+
+	    {% endif %}
+
+	    {{ tool.description }}
+	    <p>
+	    <b>condition:  </b>
+	    {{ tool.condition }}
+	    </p>
+	  </div>
+	</div>
+
+</div></div>
+
+{% endif %}
+
+{% endfor %}

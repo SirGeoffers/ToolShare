@@ -1,0 +1,53 @@
+{% extends "ToolShare/base/base_navbar.html" %}
+{% load staticfiles %}
+
+<!-- Template for an individual tool's page -->
+
+{% block title %} Tool Share - tool {% endblock %}
+
+{% block content %}
+
+<div class="col-md-8 col-md-offset-2">
+
+	<div class="row"><div class="col-md-8 component_tool">
+
+		<div class="media">
+		  <a class="pull-left" href="tool/{{ tool.id }}">
+		    <img class="media-object" src="{% static "./images/tools/hammer.jpg" %}" alt="hammer">
+		  </a>
+		  <div class="media-body">
+		    <h4 class="media-heading"><a href="tool/{{ tool.id }}" /> {{ tool.name }} </a></h4>
+		    {% if tool.available %}
+		    <h5> Available </h5>
+
+		    {% else %}
+		    <h5>Due back:  {{ tool.enddate }} </h5>
+
+		    {% endif %}
+
+		    {{ tool.description }}
+		    <p>
+		    <b>condition:  </b>
+		    {{ tool.condition }}
+		    </p>
+		  </div>
+		</div>
+
+	</div></div>
+	{% if tool.borrower == None and tool.location.owner.user != user %}
+	<form method='post' action=''>
+	{% csrf_token %}
+	{% if tool.location.shed %}<input type="submit" class="btn btn-xl btn-success" value="Borrow Tool">
+	{% else %}<input type="submit" class="btn btn-xl btn-success" value="Request to borrow">{% endif %}
+	</form>
+	{% elif tool.borrower == user.profile %}
+	<a class="btn btn-xl btn-info" href="{% url "returntool" toolid=tool.id %}">Return Tool</a>
+	{% elif tool.location.owner.user != user %}
+	This tool is alreay being borrowed.
+	{% else %}
+	<a class="btn btn-xl btn-warning" href="{% url "edittool" toolid=tool.id %}">Edit Tool</a>
+	<a class="btn btn-xl btn-danger" href="{% url "deletetool" toolid=tool.id %}">Delete Tool</a>
+	{% endif %}
+</div>
+
+{% endblock %}

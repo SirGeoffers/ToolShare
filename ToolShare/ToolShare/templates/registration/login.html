@@ -1,0 +1,16 @@
+{% extends "ToolShare/base/base_navbar.html" %}
+
+{% block content %}
+
+<center>
+
+{% if form.errors %}
+<script>window.alert("Your username and password didn't match. Please try again.");</script>
+{% endif %}
+
+<center><font size="7">YOU CANNOT VIEW THIS PAGE UNTIL YOU LOG IN</font></center>
+
+</center>
+
+{% endblock %}
+
